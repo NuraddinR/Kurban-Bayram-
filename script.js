@@ -13,8 +13,8 @@ function explodeSheep(x, y) {
     meat.textContent = "🍖";
     meat.classList.add("meat");
 
-    const offsetX = (Math.random() - 0.5) * 300;
-    const offsetY = (Math.random() - 0.5) * 180;
+    const offsetX = (Math.random() - 0.5) * window.innerWidth * 0.5;
+    const offsetY = (Math.random() - 0.5) * window.innerHeight * 0.4;
 
     meat.style.left = `${x + offsetX}px`;
     meat.style.top = `${y + offsetY}px`;
@@ -27,8 +27,8 @@ function explodeSheep(x, y) {
     message.textContent = "Bayramınız Mübarek Olsun!🎉";
     message.classList.add("bayram-mesaji");
 
-    message.style.left = `${x}px`;
-    message.style.top = `${y - 80}px`;
+    message.style.left = `${window.innerWidth / 2}px`;
+    message.style.top = `10vh`;
 
     document.body.appendChild(message);
   }, 500);
@@ -48,7 +48,7 @@ sheep.addEventListener("touchstart", (e) => {
   explodeSheep(touch.clientX, touch.clientY);
 });
 
-// Desktop-only knife tracking
+// Knife tracking (desktop only)
 if (window.innerWidth > 480) {
   sheep.addEventListener("mouseenter", () => {
     knife.style.opacity = "1";
