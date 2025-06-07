@@ -48,7 +48,7 @@ body {
 
 .meat {
   position: absolute;
-  font-size: 5vw;
+  font-size: 4vw;
   min-font-size: 30px;
   pointer-events: none;
   animation: pop 1s ease;
@@ -68,11 +68,11 @@ body {
 .bayram-mesaji {
   position: absolute;
   transform: translateX(-50%);
-  font-size: 5vw;
+  font-size: 3vw;
   max-width: 90%;
   font-weight: bold;
   color: #c0392b;
-  padding: 0 1rem;
+  padding: 0rem 1rem 4rem 0rem;
   animation: fadeIn 2s ease forwards;
   opacity: 0;
   z-index: 1000;
