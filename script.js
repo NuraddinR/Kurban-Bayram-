@@ -2,13 +2,9 @@ const sheep = document.getElementById("sheep");
 const knife = document.getElementById("knife");
 const sheepSound = document.getElementById("sheepSound");
 
-sheep.addEventListener("click", () => {
+function explodeSheep(x, y) {
   sheepSound.currentTime = 0;
   sheepSound.play();
-
-  const rect = sheep.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
 
   sheep.style.display = "none";
 
@@ -20,8 +16,8 @@ sheep.addEventListener("click", () => {
     const offsetX = (Math.random() - 0.5) * 300;
     const offsetY = (Math.random() - 0.5) * 180;
 
-    meat.style.left = `${centerX + offsetX}px`;
-    meat.style.top = `${centerY + offsetY}px`;
+    meat.style.left = `${x + offsetX}px`;
+    meat.style.top = `${y + offsetY}px`;
 
     document.body.appendChild(meat);
   }
@@ -31,25 +27,42 @@ sheep.addEventListener("click", () => {
     message.textContent = "Bayramınız Mübarek Olsun!🎉";
     message.classList.add("bayram-mesaji");
 
-    message.style.left = `${centerX}px`;
-    message.style.top = `${centerY - 80}px`;
+    message.style.left = `${x}px`;
+    message.style.top = `${y - 80}px`;
 
     document.body.appendChild(message);
   }, 500);
+}
+
+// Mouse click
+sheep.addEventListener("click", () => {
+  const rect = sheep.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  explodeSheep(centerX, centerY);
 });
 
-sheep.addEventListener("mouseenter", () => {
-  knife.style.opacity = "1";
+// Mobile tap
+sheep.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  explodeSheep(touch.clientX, touch.clientY);
 });
 
-sheep.addEventListener("mouseleave", () => {
-  knife.style.opacity = "0";
-});
+// Desktop-only knife tracking
+if (window.innerWidth > 480) {
+  sheep.addEventListener("mouseenter", () => {
+    knife.style.opacity = "1";
+  });
 
-sheep.addEventListener("mousemove", (e) => {
-  const offsetX = 20;
-  const offsetY = -10;
+  sheep.addEventListener("mouseleave", () => {
+    knife.style.opacity = "0";
+  });
 
-  knife.style.left = e.clientX + offsetX + "px";
-  knife.style.top = e.clientY + offsetY + "px";
-});
+  sheep.addEventListener("mousemove", (e) => {
+    const offsetX = 20;
+    const offsetY = -10;
+
+    knife.style.left = e.clientX + offsetX + "px";
+    knife.style.top = e.clientY + offsetY + "px";
+  });
+}

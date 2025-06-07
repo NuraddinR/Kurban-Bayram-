@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   display: flex;
   margin: 0;
@@ -7,10 +8,13 @@ body {
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
+  text-align: center;
+  overflow: hidden;
 }
 
 .container {
   text-align: center;
+  padding: 1rem;
 }
 
 #sheep-wrapper {
@@ -19,8 +23,9 @@ body {
 }
 
 #sheep {
-  font-size: 200px;
-  cursor: url("knife.png") 10 10, auto;
+  font-size: 20vw;
+  max-font-size: 200px;
+  cursor: url("knife.png") 10 10, pointer;
   transition: transform 0.3s ease;
 }
 
@@ -30,8 +35,10 @@ body {
 
 .svg-knife {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 8vw;
+  height: 8vw;
+  max-width: 40px;
+  max-height: 40px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -41,7 +48,8 @@ body {
 
 .meat {
   position: absolute;
-  font-size: 40px;
+  font-size: 5vw;
+  min-font-size: 30px;
   pointer-events: none;
   animation: pop 1s ease;
 }
@@ -60,19 +68,44 @@ body {
 .bayram-mesaji {
   position: absolute;
   transform: translateX(-50%);
-  font-size: 50px;
-  width: 60%;
+  font-size: 5vw;
+  max-width: 90%;
   font-weight: bold;
   color: #c0392b;
-  padding: 0px 0px 0px 200px;
+  padding: 0 1rem;
   animation: fadeIn 2s ease forwards;
   opacity: 0;
   z-index: 1000;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes fadeIn {
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(-70px);
+    transform: translateX(-50%) translateY(-10vh);
+  }
+}
+
+@media (max-width: 768px) {
+  #sheep {
+    font-size: 30vw;
+  }
+
+  .meat {
+    font-size: 8vw;
+  }
+
+  .bayram-mesaji {
+    font-size: 7vw;
+  }
+}
+
+@media (max-width: 480px) {
+  #sheep {
+    font-size: 35vw;
+  }
+
+  .svg-knife {
+    display: none; /* Hide knife icon on mobile for simplicity */
   }
 }
